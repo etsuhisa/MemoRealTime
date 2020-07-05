@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %><br>
+
+<h1><%= t('Memos') %></h1>
+<% if @keyword && !@keyword.empty? then %>
+  <p><%= t('Keyword') %> : <%= @keyword %></p>
+<% elsif @hashtag && !@hashtag.empty? then %>
+  <p><%= t('HashTag') %> : <%= @hashtag %></p>
+<% elsif @category && !@category.empty? then %>
+  <p><%= t('Category') %> : <%= @category.path %></p>
+<% end %>
+
+<%= form_tag(memos_path, method: :get) do %>
+  <%= text_field_tag :keyword, @keyword %>
+  <%= submit_tag t('Find'), name: nil %>
+<% end %>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th><%= t('Category') %></th>
+      <th><%= t('Title') %></th>
+      <th><%= t('Text') %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr style="background-color:<%= memo.color %>;">
+        <td><%= @category_paths[memo.category_id] %></td>
+        <td><%= link_to memo.title, memo %></td>
+        <td><%= memo.text[0,30] %></td>
+        <td><%= link_to t('Edit'), edit_memo_path(memo) %> |
+            <%= link_to t('Destroy'), memo, method: :delete, data: { confirm: t('ConfirmDestroy') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

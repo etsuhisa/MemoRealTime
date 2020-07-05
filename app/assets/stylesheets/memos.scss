@@ -1,0 +1,20 @@
+// Place all the styles related to the Memos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+input#memo_title {
+  width: 30em;
+}
+textarea#memo_text {
+  width: 30em;
+  height: 30em;
+}
+table.list {
+  border: solid 1px #000000;
+  border-collapse: collapse;
+}
+table.list th, td {
+  border: solid 1px #000000;
+}
+div.colors * {
+  display: inline;
+}

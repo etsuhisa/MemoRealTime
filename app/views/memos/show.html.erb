@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %>
+| <%= link_to t('Edit'), edit_memo_path(@memo) %>
+<br>
+
+<h2><%= @memo.title %></h2>
+
+<pre style="background-color:<%= @memo.color %>">
+<%= @pretext %>
+</pre>

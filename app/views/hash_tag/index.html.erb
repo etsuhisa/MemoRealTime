@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %><br>
+
+<h1><%= t('HashTags') %></h1>
+
+<table class='list'>
+  <thead>
+    <tr>
+      <th><%= t('Tag') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.tag, find_hashtag_path(tag.tag) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

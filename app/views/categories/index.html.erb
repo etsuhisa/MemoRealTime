@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %><br>
+
+<h1><%= t('Categories') %></h1>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th><%= t('Path') %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.path, find_category_path(category.id) %></td>
+        <td><%= link_to t('Edit'), edit_category_path(category) %> |
+            <%= link_to t('Destroy'), category, method: :delete, data: { confirm: t('ConfirmDestroy') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('New Category'), new_category_path %>

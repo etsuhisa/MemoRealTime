@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %>
+| <%= link_to t('Edit'), edit_category_path(@category) %>
+<br>
+
+<p>
+  <strong><%= t('Name') %>:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong><%= t('ParentCategory') %>:</strong>
+  <%= @category.parent %>
+</p>
+
+<p>
+  <strong><%= t('Path') %>:</strong>
+  <%= @category.path %>
+</p>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  text: MyText
+  access_at: 2020-07-03 19:50:16
+  access_cnt: 1
+
+two:
+  title: MyString
+  text: MyText
+  access_at: 2020-07-03 19:50:16
+  access_cnt: 1

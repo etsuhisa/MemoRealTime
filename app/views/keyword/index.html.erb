@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'layouts/menu' %><br>
+
+<h1><%= t('Keywords') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('keyword') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @keywords.each do |keyword| %>
+      <tr>
+        <td><%= link_to keyword.keyword, find_keyword_path(keyword.keyword) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,47 @@
+<%= form_with(model: memo, local: true) do |form| %>
+  <% if memo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(memo.errors.count, "error") %> prohibited this memo from being saved:</h2>
+
+      <ul>
+      <% memo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :category_id, t('Category') %>
+    <%= form.select :category_id, Category.all.to_a.map{|x| [x.path, x.id]}.unshift(["",-1]) %>
+    <%= text_field_tag :category_new %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title, t('Title') %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field colors">
+    <% Memo::COLORS.each do |c| %>
+      <%= form.radio_button :color, c[:code] %>
+      <span style="background-color:<%= c[:code] %>;">
+      <%= form.label "color_"+c[:code].sub('#',''), t(c[:name]) %>
+      </span>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text, t('Text') %>
+    <%= form.text_area :text %>
+  </div>
+
+  <%= form.hidden_field :update_at %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<dl id="paste_files">
+</dl>

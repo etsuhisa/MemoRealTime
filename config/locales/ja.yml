@@ -1,0 +1,51 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      update: 更新
+      submit: 保存
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      month: "%Y/%m"
+    day_names: [日曜日, 月曜日, 火曜日, 水曜日, 木曜日, 金曜日, 土曜日]
+    abbr_day_names: [日, 月, 火, 水, 木, 金, 土]
+    month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    order:
+      - :year
+      - :month
+      - :day
+  Editing Category: カテゴリの編集
+  Categories: カテゴリ一覧
+  Category: カテゴリ
+  Path: パス
+  Edit: 編集
+  Destroy: 削除
+  ConfirmDestroy: 削除していいですか？
+  New Category: 新規カテゴリ
+  Name: 名前
+  ParentCategory: 親カテゴリ
+  HashTags: ハッシュタグ一覧
+  Tag: タグ
+  Keywords: キーワード一覧
+  Keyword: キーワード
+  New Memo: 新規メモ
+  Title: タイトル
+  Text: テキスト
+  white: 白
+  red: 赤
+  green: 緑
+  blue: 青
+  yellow: 黄
+  purple: 紫
+  skyblue: 水
+  Show: 表示
+  Editing Memo: メモの編集
+  Memos: メモ一覧
+  Find: 検索
+  HashTag: ハッシュタグ
+  Back: 戻る
+

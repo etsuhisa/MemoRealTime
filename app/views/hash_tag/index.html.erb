@@ -4,18 +4,16 @@
 
 <h1><%= t('HashTags') %></h1>
 
-<table class='list'>
-  <thead>
-    <tr>
-      <th><%= t('Tag') %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= link_to tag.tag, find_hashtag_path(tag.tag) %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<table class="list">
+<tr>
+<td style="vertical-align:top;">
+<% pos = (@tags.size+2) / 3 %>
+<% @tags.each_with_index do |tag, index| %>
+<% if index > 0 && index % pos == 0 then %>
+</td><td style="vertical-align:top;">
+<% end %>
+<%= link_to tag.tag, find_hashtag_path(tag.tag) %><br>
+<% end %>
+</td>
+</tr>
 </table>

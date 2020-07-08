@@ -28,3 +28,30 @@ $(document).on 'turbolinks:load', ->
 				throw error
 			true
 
+	cur_node = null
+	if $('.category_tree').length
+		$('.category_tree').on 'click', ->
+			if cur_node
+				cur_node.css("background-color","")
+			cur_node = $(this)
+			cur_node.css("background-color","#ffd0d0")
+			target = $(this).text()
+			if target == '(all)'
+				$("table#memos_table tr").css("display", "")
+			else
+				$("table#memos_table tr").each (index, elm) ->
+					td = elm.children[0]
+					if td && td.nodeName.toUpperCase() =="TD"
+						if $(td).text().indexOf(target) != -1
+							$(elm).css("display", "")
+						else
+							$(elm).css("display", "none")
+			false
+	if $('#new_memo_category').length
+		$('#new_memo_category').on 'click', ->
+			if cur_node
+				window.location.href = $(this).attr("href")+"?category_id="+cur_node.attr("id").replace("category_tree_","")
+				false
+			true
+
+	true

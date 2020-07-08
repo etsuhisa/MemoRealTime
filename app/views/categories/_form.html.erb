@@ -12,13 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, t('Category') %>
+    <%= form.select :parent, Category.all.to_a.map{|x| [x.path, x.id]}.unshift(["",-1]) %>
     <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :parent %>
-    <%= form.text_field :parent %>
   </div>
 
   <div class="actions">

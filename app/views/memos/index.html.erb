@@ -7,16 +7,38 @@
   <p><%= t('Keyword') %> : <%= @keyword %></p>
 <% elsif @hashtag && !@hashtag.empty? then %>
   <p><%= t('HashTag') %> : <%= @hashtag %></p>
-<% elsif @category && !@category.empty? then %>
+<% elsif @category then %>
   <p><%= t('Category') %> : <%= @category.path %></p>
 <% end %>
 
+<%
+def output_tree(tree)
+  return "" if tree.empty?
+  str = "<ul>"
+  tree.each do |x|
+    str << "<li>\n"
+    str << "<a href='#' class='category_tree' id='category_tree_#{x[0].id}'>#{CGI::escapeHTML(x[0].name)}</a>\n"
+    str << output_tree(x[1])
+    str << "</li>\n"
+  end
+  str << "</ul>"
+  return str
+end
+%>
+<div class="treeview">
+<ul>
+<li><a href='#' class='category_tree' id='category_tree_'>(all)</a>
+<%= output_tree(Category.tree).html_safe %>
+</li>
+</ul>
+</div>
+<div class=listview">
 <%= form_tag(memos_path, method: :get) do %>
   <%= text_field_tag :keyword, @keyword %>
   <%= submit_tag t('Find'), name: nil %>
+  <%= link_to t('New Memo'), new_memo_path, id: 'new_memo_category', style: 'margin-left:3em;' %>
 <% end %>
-
-<table class="list">
+<table class="list"id="memos_table">
   <thead>
     <tr>
       <th><%= t('Category') %></th>
@@ -38,3 +60,4 @@
     <% end %>
   </tbody>
 </table>
+</div>

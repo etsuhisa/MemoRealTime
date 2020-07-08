@@ -21,6 +21,14 @@ class Category < ApplicationRecord
     return parents
   end
   def Category.children(parents, categories)
-    return categories.select{|x| parents.include?(x.parent)}
+    if Array === parents then
+      return categories.select{|x| parents.include?(x.parent)}
+    else
+      return categories.select{|x| parents == x.parent}
+    end
+  end
+  def Category.tree(parent=-1, categories=nil)
+    categories = Category.all unless categories
+    children(parent, categories).map{|x| [x, tree(x.id, categories)]}
   end
 end

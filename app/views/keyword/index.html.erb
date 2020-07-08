@@ -4,19 +4,16 @@
 
 <h1><%= t('Keywords') %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= t('keyword') %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @keywords.each do |keyword| %>
-      <tr>
-        <td><%= link_to keyword.keyword, find_keyword_path(keyword.keyword) %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<table class="list">
+<tr>
+<td style="vertical-align:top;">
+<% pos = (@keywords.size+2) / 3 %>
+<% @keywords.each_with_index do |keyword, index| %>
+<% if index > 0 && index % pos == 0 then %>
+</td><td style="vertical-align:top;">
+<% end %>
+<%= link_to keyword.keyword, find_keyword_path(keyword.keyword) %><br>
+<% end %>
+</td>
+</tr>
 </table>
-

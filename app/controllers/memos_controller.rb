@@ -13,7 +13,7 @@ class MemosController < ApplicationController
     if params[:keyword] then
       @keyword = params[:keyword]
       Keyword.create(keyword: @keyword) unless Keyword.find_by(keyword: @keyword)
-      @memos = Memo.where(['text like ?', "%#{@keyword}%"])
+      @memos = Memo.where(['title like ? or text like ?', "%#{@keyword}%", "%#{@keyword}%"])
     elsif params[:hashtag] then
       @hashtag = params[:hashtag]
       memo_ids = HashTag.where(tag: @hashtag).select(:memo_id)
@@ -23,7 +23,7 @@ class MemosController < ApplicationController
       category_ids = @category.descendants
       @memos = Memo.where(category_id: category_ids).order(:category_id)
     else
-      @memos = Memo.all
+      @memos = Memo.all.order(:category_id)
     end
     @category_paths = Category.pluck(:id, :path).to_h
   end
@@ -40,6 +40,7 @@ class MemosController < ApplicationController
   # GET /memos/new
   def new
     @memo = Memo.new
+    @memo.category_id = params[:category_id] if params[:category_id]
     @memo.color = Memo::COLORS.first[:code]
   end
 
